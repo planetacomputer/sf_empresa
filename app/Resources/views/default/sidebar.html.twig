@@ -1,0 +1,4 @@
+ <h4 class="w3-bar-item"><b>Els meus projectes ({{ projectes|length }})</b></h4>
+	{% for projecte in projectes %}
+		<a class="w3-bar-item w3-button w3-hover-black" href="#">{{ projecte.PRJT_NAME }} {{ projecte.PRJT_CODE }}</a>
+	{% endfor %}

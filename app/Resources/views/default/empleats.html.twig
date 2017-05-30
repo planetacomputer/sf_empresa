@@ -10,7 +10,7 @@
           <li class="w3-padding-16">
             <a href="{{ path('empleat_show', {'id': user.EMPL_ID}) }}"><img src="{{ asset('images/empleats/img_avatar'~random(5)~'.png')}}" class="w3-left w3-circle w3-margin-right" style="width:50px">
             <span class="w3-large">{{ user.EMPL_FORNAME }}</span></a><br>
-            <span>{{ user.EMPL_SURNAME }}</span>
+            <span>{{ user.EMPL_SURNAME }}</span>    {{  render(controller("AppBundle:Default:sidebar", { 'id': user.EMPL_ID} )) }}
           </li>
         {% endfor %}
       {% endblock %}

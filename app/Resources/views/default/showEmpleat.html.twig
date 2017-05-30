@@ -1,13 +1,25 @@
 {% extends 'default/empleats.html.twig' %}
+
 {% block showEmpleat %}
+{{ dump(user) }}
 <div class="w3-card-4">
   <img src="{{ asset('images/empleats/img_avatar'~random(5)~'.png')}}"" alt="{{ user.EMPL_FORNAME }} {{ user.EMPL_SURNAME }}">
   <div class="w3-container w3-center">
     <h1>{{ user.EMPL_FORNAME }} {{ user.EMPL_SURNAME }}</h1>
+    <h2>OFICINA: {{ user.OFFC_CITY }}, {{ user.OFFC_COUNTRY }}</h2>
     <p>Hire date: {{ user.EMPL_HIRE_DATE | date("m-d-Y") }}</p>
   </div>
 </div>
 {% endblock %}
+{% block sidebar %}
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" style="z-index:3;width:250px;margin-top:43px;" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+    {{  render(controller("AppBundle:Default:sidebar", { 'id': user.EMPL_ID} )) }}
+  </nav>
+{% endblock %}
+
 
 
 

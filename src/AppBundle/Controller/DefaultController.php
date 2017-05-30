@@ -44,12 +44,22 @@ class DefaultController extends Controller
     {
         $id = $request->get('id');
         $dbh = $this->databaseConnection();
-        $sql = "SELECT * FROM T_EMPLOYEES WHERE EMPL_ID = :id";
+        $sql = "SELECT * FROM T_EMPLOYEES e INNER JOIN T_OFFICES o ON e.OFFC_ID = o.OFFC_ID WHERE EMPL_ID = :id";
         $query = $dbh->prepare($sql);
         $query -> bindParam(':id', $id, \PDO::PARAM_INT);
         $query->execute();
         $empleat=$query->fetch(\PDO::FETCH_OBJ);
         return $this->render('default/showEmpleat.html.twig', array('user' => $empleat));
+    }
+
+    public function sidebarAction($id){
+        $dbh = $this->databaseConnection();
+        $sql = "SELECT * FROM T_PROJECTS p INNER JOIN T_PROJECTS_EMPLOYEES pe ON p.PRJT_ID  = pe.PRJT_ID  WHERE pe.EMPL_ID = :id";
+        $query = $dbh->prepare($sql);
+        $query -> bindParam(':id', $id, \PDO::PARAM_INT);
+        $query->execute();
+        $projectes=$query->fetchAll(\PDO::FETCH_OBJ);
+        return $this->render('default/sidebar.html.twig', array('projectes' => $projectes));
     }
 
     private function databaseConnection(){
