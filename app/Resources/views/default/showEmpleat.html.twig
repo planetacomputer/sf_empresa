@@ -1,0 +1,13 @@
+{% extends 'default/empleats.html.twig' %}
+{% block showEmpleat %}
+<div class="w3-card-4">
+  <img src="{{ asset('images/empleats/img_avatar'~random(5)~'.png')}}"" alt="{{ user.EMPL_FORNAME }} {{ user.EMPL_SURNAME }}">
+  <div class="w3-container w3-center">
+    <h1>{{ user.EMPL_FORNAME }} {{ user.EMPL_SURNAME }}</h1>
+    <p>Hire date: {{ user.EMPL_HIRE_DATE | date("m-d-Y") }}</p>
+  </div>
+</div>
+{% endblock %}
+
+
+
